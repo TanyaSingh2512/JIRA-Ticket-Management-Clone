@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: 'Maven Pro', sans-serif;
 }
 
 body {
@@ -21,7 +22,7 @@ body {
 
 .toolbox-priority-cont {
   height: 3.5rem;
-  width: 18rem;
+  width: 14rem;
   background-color: #3d3d3d;
   display: flex;
     align-items: center; 
@@ -29,7 +30,7 @@ body {
 }
 .action-btn-cont {
   height: 3.5em;
-  width: 7rem;
+  width: 6rem;
   background-color: #3d3d3d;
   display: flex;
 }
@@ -45,7 +46,7 @@ body {
 
 .color {
   height: 1.5rem;
-  width: 3rem;
+  width: 2.5rem;
 }
 .lightpink {
   background-color: lightpink;
@@ -75,6 +76,7 @@ body {
   top: calc((100vh - 50vh) / 2);/*top  se itna neeche*/
   left: calc((100vw - 45vw) / 2);
   display: none;/* only displayed when add button is clicked,deafult is none*/
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;/*shadow*/
 }
 .textarea-cont {
   height: 100%;
@@ -141,4 +143,40 @@ body {
   padding: 5px;
   outline:none;
 
+}
+/*tablet*/
+@media screen and (min-width: 425px) and (max-width: 768px) {
+  .modal-cont {
+    width: 60vw;
+    left: calc((100vw - 60vw) / 2);
+  }
+}
+/*moblile*/
+@media screen and (max-width: 426px) {
+  .modal-cont {
+    width: 75vw;
+    height: 55vh;
+    top: calc((100vh - 55vh) / 2);
+    left: calc((100vw - 75vw) / 2);
+    flex-direction: column;
+  }
+     .textarea-cont {
+       width: 100%;
+       height: 75%;
+     }
+  
+     .priority-colors-cont {
+       flex-direction: row;
+       width: 100%;
+       height: 25%;
+     }
+  
+     .priority-color {
+       width: 17%;
+     }
+  
+     .toolbox-cont>* {
+       margin-left: 1.5rem;
+       border-radius: 2px;
+     }
 }
