@@ -91,7 +91,7 @@ addBtn.addEventListener("click", function (e) {
 //Generating a ticket
 modalCont.addEventListener("keydown", function (e) {
   let key = e.key;
-  if (key == "Shift") {
+  if (key == "@") {
     createTicket(modalPriorityColor, taskAreaCont.value);
     modalCont.style.display = "none"; //after ticket is generated bigtask writting should disapper
     addFlag = false; //after ticket has been added
