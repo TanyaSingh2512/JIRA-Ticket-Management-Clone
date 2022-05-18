@@ -106,13 +106,18 @@ function createTicket(ticketColor, ticketKaValue, ticketID) {
   ticketCont.setAttribute("class", "ticket-cont");
 
   ticketCont.innerHTML = `<div class="ticket-color ${ticketColor}"></div>
-        <div class="ticket-id">#${ticketID}</div>
+        <div class="ticket-id">#${id}</div>
         <div class="task-area">${ticketKaValue}</div>
         <div class="ticket-lock">
           <i class="fa-solid fa-lock"></i>
         </div>`;
-  mainCont.appendChild(ticketCont); //append this div of ticketCont into mainCont where mainCont is the parent
 
+  mainCont.appendChild(ticketCont); //append this div of ticketCont into mainCont where mainCont is the parent
+  handleRemoval(ticketCont, id);
+
+  handleLock(ticketCont, id);
+
+  handleColor(ticketCont, id);
   //now store the tickets as objects in an array ticketArr
   //create object of ticket and add to array
   if (!ticketID) {
@@ -120,12 +125,6 @@ function createTicket(ticketColor, ticketKaValue, ticketID) {
     //in local storage we pass the array of ticket object
     localStorage.setItem("jira_tickets", JSON.stringify(ticketsArr));
   } //give ticketId as id otherwise it comes undefined
-
-  handleRemoval(ticketCont, id);
-
-  handleLock(ticketCont, id);
-
-  handleColor(ticketCont, id);
 }
 
 //changing priority colours for modalContainer ie bigtask one
@@ -154,16 +153,21 @@ removeBtn.addEventListener("click", function () {
 //handles ticket removal when cross ispressed and is true
 function handleRemoval(ticket, id) {
   ticket.addEventListener("click", function () {
-    if (removeFlag == true) {
-      let idx = getTikcetIdx(id);
+    if (!removeFlag) return;
 
-      // DB removal
-      ticketsArr.splice(idx, 1);
-      let strTicketsArr = JSON.stringify(ticketsArr);
-      localStorage.setItem("jira_tickets", strTicketsArr);
+    let idx = getTicketIdx(id); // idx
 
-      ticket.remove(); //UI removal
-    }
+    // localStorgae removal of ticket
+
+    let deletedElement = ticketsArr.splice(idx, 1);
+
+    //deleteElements.push(deletedElement)
+
+    let strTicketArray = JSON.stringify(ticketsArr);
+
+    localStorage.setItem("jira_tickets", strTicketArray);
+
+    ticket.remove(); // ui removal
   });
 }
 
